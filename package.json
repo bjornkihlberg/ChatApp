@@ -14,7 +14,7 @@
     "keywords": [
         "FSharp",
         "Fable",
-        "ASP"
+        "ASP.NET Core"
     ],
     "author": "bjorn.wilhelm.kihlberg@gmail.com",
     "license": "ISC",
