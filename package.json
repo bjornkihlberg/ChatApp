@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "clientbuild": "webpack --watch --progress",
-        "serverbuild": "dotnet watch --project Server run"
+        "serverbuild": "dotnet watch --project Server run",
+        "start": "dotnet run --project Server"
     },
     "repository": {
         "type": "git",
