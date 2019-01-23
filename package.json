@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/bjornkihlberg/ChatApp/issues"
   },
-  "homepage": "https://github.com/bjornkihlberg/ChatApp#readme"
+  "homepage": "https://github.com/bjornkihlberg/ChatApp#readme",
+  "devDependencies": {
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  }
 }
