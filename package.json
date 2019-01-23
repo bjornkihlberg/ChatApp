@@ -22,6 +22,9 @@
     },
     "homepage": "https://github.com/bjornkihlberg/ChatApp#readme",
     "devDependencies": {
+        "@babel/core": "^7.2.2",
+        "fable-compiler": "^2.1.10",
+        "fable-loader": "^2.1.2",
         "webpack": "^4.29.0",
         "webpack-cli": "^3.2.1"
     }
