@@ -1,4 +1,5 @@
-﻿open System.IO
+﻿open System
+open System.IO
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.DependencyInjection
@@ -6,15 +7,14 @@ open Giraffe
 
 let endpoints = choose []
 
-type Startup() =
-    member __.ConfigureServices (services: IServiceCollection): unit =
-        services.AddGiraffe() |> ignore
-    
-    member __.Configure (app: IApplicationBuilder): unit =
-        app
-            .UseDefaultFiles()
-            .UseStaticFiles()
-            .UseGiraffe endpoints
+let configureApp (app: IApplicationBuilder): unit =
+    app.UseDefaultFiles()
+       .UseStaticFiles()
+       .UseGiraffe endpoints
+
+let configureServices (services: IServiceCollection): unit =
+    services.AddGiraffe()
+            .AddSignalR() |> ignore
 
 [<EntryPoint>]
 let main _ =
@@ -24,7 +24,8 @@ let main _ =
         .UseKestrel()
         .UseWebRoot(publicPath)
         .UseContentRoot(publicPath)
-        .UseStartup<Startup>()
+        .Configure(Action<IApplicationBuilder> configureApp)
+        .ConfigureServices(configureServices)
         .Build()
         .Run()
     0 // return an integer exit code
