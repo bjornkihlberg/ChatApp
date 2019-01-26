@@ -3,7 +3,6 @@
         "**/node_modules": true,
         "**/package-lock.json": true,
         "**/LICENSE": true,
-        "**/.fable": true,
         "**/bin": true,
         "**/obj": true
     }

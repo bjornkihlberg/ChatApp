@@ -1,0 +1,47 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended",
+        "tslint-immutable/all"
+    ],
+    "rules": {
+        "no-any": true,
+        "no-empty-interface": true,
+        "semicolon": [
+            true,
+            "never"
+        ],
+        "no-parameter-reassignment": true,
+        "typedef": [
+            true,
+            "call-signature"
+        ],
+        "readonly-keyword": false,
+        "no-expression-statement": false,
+        "no-if-statement": false,
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "no-non-null-assertion": true,
+        "only-arrow-functions": true,
+        "prefer-const": true,
+        "prefer-readonly": true,
+        "prefer-for-of": true,
+        "curly": false,
+        "prefer-conditional-expression": true,
+        "unified-signatures": true,
+        "await-promise": true,
+        "triple-equals": true,
+        "no-var-keyword": true,
+        "cyclomatic-complexity": false,
+        "no-shadowed-variable": false,
+        "arrow-parens": false,
+        "trailing-comma": false,
+        "no-consecutive-blank-lines": [
+            true,
+            2
+        ]
+    },
+    "rulesDirectory": []
+}

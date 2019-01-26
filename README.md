@@ -1,2 +1,2 @@
 # ChatApp
-Browser based chat application in fullstack F#
+Browser based chat application in F# and TypeScript
