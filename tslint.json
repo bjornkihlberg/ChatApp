@@ -17,6 +17,7 @@
             "call-signature"
         ],
         "readonly-keyword": false,
+        "readonly-array": false,
         "no-expression-statement": false,
         "no-if-statement": false,
         "quotemark": [
