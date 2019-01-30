@@ -1,0 +1,12 @@
+.maincontainer {
+    flex-grow: 1;
+}
+
+.chathistorycontainer {
+    height: 50vh;
+}
+
+.chathistoryscrollpaper {
+    height: 100%;
+    overflow: auto;
+}
