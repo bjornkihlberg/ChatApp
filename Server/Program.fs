@@ -9,13 +9,13 @@ open Giraffe
 
 let endpoints = choose []
 
-let mutable msgs: (string * string * string)[] = [||]
+type Message = { userName: string
+                 content: string }
 
 type MyHub() =
     inherit Hub()
-    member __.PostMessage(user: string, msg: string): Unit =
-        msgs <- Array.truncate 5 [| yield Guid.NewGuid().ToString(), user, msg; yield! msgs |]
-        __.Clients.All.SendAsync("receiveMessages", msgs) |> ignore
+    member __.PostMessage(message: Message): Unit =
+        __.Clients.All.SendAsync("receiveMessage", message) |> ignore
 
 let configureApp (app: IApplicationBuilder): unit =
     app.UseDefaultFiles()
