@@ -4,9 +4,8 @@
     "description": "Chat application in F#",
     "main": "index.js",
     "scripts": {
-        "clientbuild": "webpack --watch --progress",
-        "serverbuild": "dotnet watch --project Server run",
-        "start": "dotnet run --project Server"
+        "build": "webpack --watch --progress",
+        "server": "dotnet run --project Server"
     },
     "repository": {
         "type": "git",
