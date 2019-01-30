@@ -41,6 +41,7 @@
     },
     "dependencies": {
         "@aspnet/signalr": "^1.1.0",
+        "@material-ui/core": "^3.9.1",
         "@types/react": "^16.7.20",
         "@types/react-dom": "^16.0.11",
         "@types/react-redux": "^7.0.1",
