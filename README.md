@@ -101,7 +101,7 @@ let configureApp (app: IApplicationBuilder): unit =
 The methods `UseWebRoot` and `UseContentRoot` on the `WebHostBuilder` object allow us to specify where our server should look for static files automatically.
 ```fsharp
 let publicPath = Path.GetFullPath "./public"
-...
+// ...
 
 .UseWebRoot(publicPath)
 .UseContentRoot(publicPath)
@@ -206,7 +206,7 @@ type Message = { userName: string
 Next we define a method I've decided to call `PostMessage` that takes an object of type `Message` and performs some side effect.
 ```fsharp
 member __.PostMessage(message: Message): unit =
-    ...
+    // ...
 ```
 This method can be invoked directly by the client to run on the server. In our case we want `PostMessage` to send the message back to all clients connected to `/myhub`. We do this by calling
 ```fsharp
