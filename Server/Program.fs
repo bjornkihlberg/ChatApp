@@ -14,7 +14,7 @@ type Message = { userName: string
 
 type MyHub() =
     inherit Hub()
-    member __.PostMessage(message: Message): Unit =
+    member __.PostMessage(message: Message): unit =
         __.Clients.All.SendAsync("receiveMessage", message) |> ignore
 
 let configureApp (app: IApplicationBuilder): unit =
