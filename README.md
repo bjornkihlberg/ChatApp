@@ -17,7 +17,7 @@ to architecture the application in a
 [type safe](https://en.wikipedia.org/wiki/Type_safety)
 [declarative](https://en.wikipedia.org/wiki/Declarative_programming)
 style.
-[Material UI](https://material-ui.com/) is used for styling elements with a modern and professional look.
+[Material UI](https://material-ui.com/) is used for styling elements for a modern and professional look.
 
 ---
 ## Instructions
@@ -35,7 +35,7 @@ style.
     ```
     npm run server
     ```
-    *Dependencies should download automatically for dotnet core*
+    *Dependencies should download automatically for dotnet core.*
 
 1. Compile optimized build targets of client code with command:
     ```
