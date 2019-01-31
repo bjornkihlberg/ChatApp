@@ -18,3 +18,26 @@ to architecture the application in a
 [declarative](https://en.wikipedia.org/wiki/Declarative_programming)
 style.
 [Material UI](https://material-ui.com/) is used for styling elements with a modern and professional look.
+
+---
+## Instructions
+1. Install client dependencies with command:
+    ```
+    npm install
+    ```
+1. Run automated development build process of client code with command:
+    ```
+    npm run build
+    ```
+    *Watches the source files for changes and compiles on save.*
+
+1. Start server with command:
+    ```
+    npm run server
+    ```
+    *Dependencies should download automatically for dotnet core*
+
+1. Compile optimized build targets of client code with command:
+    ```
+    npm run release
+    ```
