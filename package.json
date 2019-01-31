@@ -19,7 +19,9 @@
         "Redux",
         "React-Redux",
         "SignalR",
-        "ASP.NET Core"
+        "ASP.NET Core",
+        "Material UI",
+        "Giraffe"
     ],
     "author": "bjorn.wilhelm.kihlberg@gmail.com",
     "license": "ISC",
