@@ -1,4 +1,5 @@
 # ChatApp
+![chatsessh](https://user-images.githubusercontent.com/38290734/52056441-8f237880-2562-11e9-8d9e-f585a61900c2.gif)
 Browser based chat application. Server is written in
 [F#.NET](https://fsharp.org/)
 with
