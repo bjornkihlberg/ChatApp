@@ -216,3 +216,94 @@ __.Clients.All.SendAsync("receiveMessage", message) |> ignore
 `SendAsync` triggers an event on clients called `receiveMessage` with given parameters. In our case the `message` object.
 
 That is pretty much how the server works.
+
+*I only included Giraffe in the code base so that I have an example of how to integrate it. I'm breaking my own rules because I shouldn't include more than is strictly necessary for the purpose of the demo. I dislike YOLO programmers but... YOLO*
+
+---
+### The Client
+I will not go into the client in detail, the `App`-component is not strictly necessary to understand in order to understand how client-server communication works. I will only show what I think is important to make this work.
+#### Let's begin by configuring our SignalR connection to the server
+```ts
+import { HubConnectionBuilder } from '@aspnet/signalr'
+
+const myhub: HubConnection = new HubConnectionBuilder().withUrl('/myhub').build()
+```
+We're using the same endpoint as defined in the server code.
+```ts
+.withUrl('/myhub')
+```
+```fsharp
+.UseSignalR(fun routes -> routes.MapHub<MyHub>(PathString "/myhub"))
+```
+This has ofcourse (and unfortunately) caused an implicit coupling with our server code. That means that if this endpoint is not the same as the one on the server, the code will not work. Unfortunately we're going to create a few more implicit couplings between the client code and the server code before this is over.
+#### Next step is to listen on incomming data from the server
+```ts
+import { HubConnectionBuilder } from '@aspnet/signalr'
+
+const myhub: HubConnection = new HubConnectionBuilder().withUrl('/myhub').build()
+const connectionEstablishment: Promise<void> = myhub.start()
+
+myhub.on('receiveMessage', data => /* ... */))
+```
+As we defined in the server code we may now listen to the `receiveMessage` event on the client and use whatever data is sent from the server.
+```fsharp
+member __.PostMessage(message: Message): unit =
+    __.Clients.All.SendAsync("receiveMessage", message) |> ignore
+```
+*More implicit coupling.*
+
+ As we can see the data is defined as a `Message`
+ ```fsharp
+ type Message = { userName: string
+                 content: string }
+ ```
+ so we will need an equivalent definition in the client code to help us work with the data correctly. In my application this definition is defined in `App.tsx`
+ ```ts
+ export interface IMessage {
+    userName: string
+    content: string
+}
+ ```
+ *Yet even more implicit coupling. Will it ever stop?*
+
+#### In my case I'm using Redux to save incoming messages
+```ts
+myhub.on('receiveMessage', (message: IMessage) =>
+    store.dispatch({ type: APPEND_MESSAGE, message }))
+```
+You can ofcourse do other things with the `data` object (renamed "message" and typed as `IMessage` in my case). With Redux the whole application will react appropriately on incoming messages.
+
+#### To send messages we invoke `PostMessage` as defined in the server code
+```tsx
+import { HubConnectionBuilder } from '@aspnet/signalr'
+
+const myhub: HubConnection = new HubConnectionBuilder().withUrl('/myhub').build()
+const connectionEstablishment: Promise<void> = myhub.start()
+
+myhub.on('receiveMessage', (message: IMessage) => /* ... */))
+
+const app =
+    <Provider store={store}>
+        <App onSendMessage={({ userName, content }) =>
+            myhub.invoke('PostMessage', { userName, content })} />
+    </Provider>
+```
+We call the `invoke` method on the `HubConnection` object
+```ts
+myhub.invoke('PostMessage', { userName, content })
+```
+This will execute the method with the same name on the `MyHub` class on the server.
+```fsharp
+type MyHub() =
+    inherit Hub()
+    member __.PostMessage(message: Message): unit =
+        __.Clients.All.SendAsync("receiveMessage", message) |> ignore
+```
+which in turn triggers the `receiveMessage` event on all connected clients, thereby passing along the incoming message and causing all clients to react to it
+```ts
+myhub.on('receiveMessage', (message: IMessage) => /* ... */))
+```
+
+Unless I've missed anything, that's how to use SignalR for server-client communication.
+
+Thank you for reading! Hope this helps someone!
