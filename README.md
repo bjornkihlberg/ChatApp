@@ -213,6 +213,6 @@ This method can be invoked directly by the client to run on the server. In our c
 ```fsharp
 __.Clients.All.SendAsync("receiveMessage", message) |> ignore
 ```
-`SendAsync` invokes a function on clients called `receiveMessage` with given parameters. In our case the `message` object.
+`SendAsync` triggers an event on clients called `receiveMessage` with given parameters. In our case the `message` object.
 
 That is pretty much how the server works.
