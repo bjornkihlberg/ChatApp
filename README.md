@@ -308,4 +308,11 @@ myhub.on('receiveMessage', (message: IMessage) => /* ... */))
 
 Unless I've missed anything, that's how to use SignalR for server-client communication.
 
-Thank you for reading! Hope this helps someone!
+## Thank you for reading! Hope this helps someone!
+
+### How could we deal with implicit coupling?
+It's not obvious to me that we want to. I lean, however, towards explicit coupling, even if it means more coupling. For example we could have a `.json` file defining name of events, endpoints and functions and have explicit coupling with that `.json` file and the client code and server code. It get's a little tricky when you want common types.
+
+Originally I wanted to use
+[Fable](https://fable.io/)
+to compile F# to JavaScript for the frontend code but I am not entirely convinced this is a good idea. While F# for the frontend means you can have shared code between frontend and backend, I get the feeling that the Fable ecosystem is not mature yet. I may be wrong and maybe I'll take another look at it in the future. But for now I decided to stick to TypeScript for the sake of simplicity. Anyway, using Fable would make most if not all of implicit coupling between client code and server code explicit.
