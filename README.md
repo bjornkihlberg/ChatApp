@@ -292,6 +292,8 @@ We call the `invoke` method on the `HubConnection` object
 ```ts
 myhub.invoke('PostMessage', { userName, content })
 ```
+*Notice that the object passed to the `invoke` method has to satisfy the shape of the `Message` type. Say it with me: "Boo! Implicit coupling!"*
+
 This will execute the method with the same name on the `MyHub` class on the server.
 ```fsharp
 type MyHub() =
